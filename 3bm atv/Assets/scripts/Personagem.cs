@@ -3,48 +3,44 @@ using UnityEngine;
 public class Personagem : MonoBehaviour
 {
     
-    [SerializeField] public int Vida;
-    [SerializeField] private int Energia;
-    [SerializeField] private float Velocidade;
-    
+    [SerializeField] private float velocidade;
+    [SerializeField] private int vida;
+    [SerializeField] private int energia;
+
+    public void setVelocidade(float velocidade)
+    {
+        this.velocidade = velocidade;
+    }
+
+    public float getVelocidade()
+    {
+        return this.velocidade;
+    }
+
     public void setVida(int vida)
     {
-        this.Vida = vida;
+        this.vida = vida;
     }
 
     public int getVida()
     {
-        return this.Vida;
-    }
-    
-    public void setEnergia(int energia)
-    {
-        this.Energia = energia;
+        return this.vida;
     }
 
-    public int getEnergia()
+    public void setEnergy(int energia)
     {
-        return this.Energia;
-    }
-    
-    public void setVelocidade(float velocidade)
-    {
-        this.Velocidade = velocidade;
-    }
-    
-    public float getVelocidade()
-    {
-        return this.Velocidade;
-    }
-    void Start()
-    {
-        
+        this.energia = energia;
     }
 
-    
-    void Update()
+    public int getEnergy()
+    {
+        return this.energia;
+    }
+
+    public void recebeDano(int dano)
     {
         
+        int novaVida = getVida() - dano;
+        setVida(novaVida);
     }
 }
-  
