@@ -3,36 +3,31 @@ using UnityEngine;
 
 public class Jogador : Personagem
 {
-    
+    private Rigidbody2D rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody22D>();
     }
 
-    
     void Update()
     {
+        // pegar entrada
+        float moveX = 0f;
+        float moveY = 0f;
+
         if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += new Vector3(-getVelocidade() * Time.deltaTime, 0, 0);
-        }
-        
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += new Vector3(getVelocidade() * Time.deltaTime, 0, 0);
-        }
+            moveX = -1f;
+        else if (Input.GetKey(KeyCode.D))
+            moveX = 1f;
 
-        
         if (Input.GetKey(KeyCode.W))
-        {
-            transform.position += new Vector3(0, getVelocidade() * Time.deltaTime, 0);
-        }
+            moveY = 1f;
+        else if (Input.GetKey(KeyCode.S))
+            moveY = -1f;
 
-        
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += new Vector3(0, -getVelocidade() * Time.deltaTime, 0);
-        }
+        Vector2 movimento = new Vector2(moveX, moveY).normalized * getVelocidade();
+        rb.velocity = movimento;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -41,7 +36,6 @@ public class Jogador : Personagem
         {
             int Vida = getVida() - 1;
             setVida(Vida);
-            
         }
     }
 }
