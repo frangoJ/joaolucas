@@ -7,7 +7,7 @@ public class Jogador : Personagem
 
     void Start()
     {
-        rb = GetComponent<Rigidbody22D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class Jogador : Personagem
             moveY = -1f;
 
         Vector2 movimento = new Vector2(moveX, moveY).normalized * getVelocidade();
-        rb.velocity = movimento;
+        rb.linearVelocity = movimento;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
